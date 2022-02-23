@@ -17,7 +17,7 @@
             }
             iter++;
             if (next == 1)
-                return false;
+                return true;
             else if (iter > 20)
                 return false;
             else

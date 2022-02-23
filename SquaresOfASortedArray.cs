@@ -13,7 +13,6 @@
                 minIndex = i;
             }
         }
-        Console.WriteLine(minIndex);
         int leftIterator = minIndex - 1;
         int rightIterator = minIndex + 1;
         int currentIterator = 1;
@@ -44,6 +43,7 @@
             rightIterator++;
             currentIterator++;
         }
+
         return result;
     }
 }

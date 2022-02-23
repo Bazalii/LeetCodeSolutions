@@ -1,4 +1,5 @@
-﻿public class Solution {
+﻿public class Solution 
+{
     public int CountKDifference(int[] nums, int k) 
     {
         int arrayLength = nums.Length;

@@ -1,4 +1,5 @@
-﻿public class Solution {
+﻿public class Solution 
+{
     public int[] TwoSum(int[] nums, int target) 
     {
         int[] numsCopy = new int[nums.Length];

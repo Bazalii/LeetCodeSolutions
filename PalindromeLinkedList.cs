@@ -20,10 +20,10 @@ public class Solution
             number.Add(currentNode.val);
             currentNode = currentNode.next;
         }    
+
         number.Add(currentNode.val);
         int bottom = 0;
         int top = number.Count - 1;
-        Console.WriteLine(top);
         while(bottom < top)
         {
             if (number[bottom] != number[top])

@@ -1,17 +1,17 @@
 ﻿/**
  * Definition for singly-linked list.
  * public class ListNode {
- *     public int val;
- *     public ListNode next;
- *     public ListNode(int val=0, ListNode next=null) {
- *         this.val = val;
- *         this.next = next;
- *     }
+ * public int val;
+ * public ListNode next;
+ * public ListNode(int val=0, ListNode next=null) {
+ * this.val = val;
+ * this.next = next;
+ * }
  * }
  */
-public class Solution 
+public class Solution
 {
-    public ListNode MergeTwoLists(ListNode list1, ListNode list2) 
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2)
     {
         if (list1 == null && list2 == null)
             return null;
@@ -33,6 +33,7 @@ public class Solution
             head = currentSecond;
             currentSecond = currentSecond.next;
         }
+
         currentOut = head;
         while (currentFirst != null || currentSecond != null)
         {
@@ -43,7 +44,7 @@ public class Solution
                     currentOut.next = currentFirst;
                     currentFirst = currentFirst.next;
                 }
-                else 
+                else
                 {
                     currentOut.next = currentSecond;
                     currentSecond = currentSecond.next;
@@ -59,10 +60,10 @@ public class Solution
                 currentOut.next = currentSecond;
                 currentSecond = currentSecond.next;
             }
-            
+
             currentOut = currentOut.next;
         }
-        
+
         return head;
     }
 }

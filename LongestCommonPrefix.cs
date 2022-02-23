@@ -14,10 +14,7 @@
                 if (strs[i][j] != strs[i + 1][j])
                 {
                     if (answer == "" || answer.Length > j)
-                    {
                         answer = strs[i].Substring(0, j);
-                    }
-
                     break;
                 }
             }
@@ -25,13 +22,12 @@
             if (j == length)
             {
                 if (answer == "" || answer.Length > j)
-                {
                     answer = strs[i].Substring(0, length);
-                }
             }
             if (answer == "")
                 return answer;
         }
+
         return answer;
     }
 }

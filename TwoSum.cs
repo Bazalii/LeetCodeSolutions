@@ -1,63 +1,48 @@
-﻿public class Solution 
+﻿public class Solution
 {
-    public int[] TwoSum(int[] nums, int target) 
+    public int[] TwoSum(int[] numbers, int target)
     {
-        int[] numsCopy = new int[nums.Length];
-        for (int i = 0; i < nums.Length; i++)
+        var oldNumbers = new int[numbers.Length];
+
+        Array.Copy(numbers, oldNumbers, numbers.Length);
+        Array.Sort(numbers);
+
+        var leftPointer = 0;
+        var rightPointer = numbers.Length - 1;
+
+        while (leftPointer != rightPointer)
         {
-            numsCopy[i] = nums[i];
-        }
-        for (int i = 1; i < numsCopy.Length; i++)
-        {
-            int key = numsCopy[i];
-            int j = i - 1;
-            while (j >= 0 && numsCopy[j] > key)
+            var currentSummary = numbers[leftPointer] + numbers[rightPointer];
+
+            if (currentSummary > target)
             {
-                numsCopy[j + 1] = numsCopy[j];
-                j -= 1;
+                rightPointer--;
             }
-
-            numsCopy[j + 1] = key;
-        }
-        for (int i = 0; i < numsCopy.Length; i++)
-        {
-            int bottom = i + 1;
-            int top = numsCopy.Length - 1;
-            while (bottom <= top)
+            else if (currentSummary < target)
             {
-                int mid = Convert.ToInt32((bottom + top) / 2);
-                if (numsCopy[mid] + numsCopy[i] > target)
-                {
-                    top = mid - 1;   
-                }
-                else if (numsCopy[mid] + numsCopy[i] < target)
-                {
-                    bottom = mid + 1;
-                }
-                else
-                {
-                    int[] output = { -1, -1 };
-                    for (int j = 0; j < nums.Length; j++)
-                    {
-                        if (nums[j] == numsCopy[i])
-                        {
-                            output[0] = j;
-                            break;
-                        }
-                    }
-                    for (int j = 0; j < nums.Length; j++)
-                    {
-                        if (nums[j] == numsCopy[mid] && output[0] != j)
-                        {
-                            output[1] = j;
-                        }
-                    }
+                leftPointer++;
+            }
+            else
+            {
+                var firstIndex = int.MinValue;
+                var secondIndex = 0;
 
-                    return output;
+                for (var i = 0; i < numbers.Length; i++)
+                {
+                    if (oldNumbers[i] == numbers[leftPointer] && firstIndex == int.MinValue)
+                    {
+                        firstIndex = i;
+                    }
+                    else if (oldNumbers[i] == numbers[rightPointer])
+                    {
+                        secondIndex = i;
+                    }
                 }
+
+                return new[] { firstIndex, secondIndex };
             }
         }
 
-        return new[] {-1};
+        return Array.Empty<int>();
     }
 }

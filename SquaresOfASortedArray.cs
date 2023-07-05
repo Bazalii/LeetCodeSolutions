@@ -1,47 +1,47 @@
-﻿public class Solution 
+﻿public class Solution
 {
-    public int[] SortedSquares(int[] nums) 
+    public int[] SortedSquares(int[] numbers)
     {
-        int[] result = new int [nums.Length];
-        int minIndex = -1;
-        int min = 10001;
-        for (int i = 0; i < nums.Length; i++)
+        var result = new int[numbers.Length];
+        var resultPointer = 0;
+        var rightPointer = 0;
+
+        while (rightPointer < numbers.Length && numbers[rightPointer] < 0)
         {
-            if (Math.Abs(nums[i]) < min)
-            {
-                min = Math.Abs(nums[i]);
-                minIndex = i;
-            }
+            numbers[rightPointer] = -numbers[rightPointer];
+            rightPointer++;
         }
-        int leftIterator = minIndex - 1;
-        int rightIterator = minIndex + 1;
-        int currentIterator = 1;
-        result[0] = nums[minIndex] * nums[minIndex];
-        while (leftIterator > -1 && rightIterator < nums.Length)
+
+        var leftPointer = rightPointer - 1;
+
+        while (leftPointer > -1 && rightPointer < numbers.Length)
         {
-            if (Math.Abs(nums[leftIterator]) < Math.Abs(nums[rightIterator]))
+            if (numbers[leftPointer] < numbers[rightPointer])
             {
-                result[currentIterator] = nums[leftIterator] * nums[leftIterator];
-                leftIterator--;
-            }  
+                result[resultPointer] = numbers[leftPointer] * numbers[leftPointer];
+                leftPointer--;
+            }
             else
             {
-                result[currentIterator] = nums[rightIterator] * nums[rightIterator];
-                rightIterator++;
+                result[resultPointer] = numbers[rightPointer] * numbers[rightPointer];
+                rightPointer++;
             }
-            currentIterator++;
+
+            resultPointer++;
         }
-        while (leftIterator > -1)
+
+        while (leftPointer > -1)
         {
-            result[currentIterator] = nums[leftIterator] * nums[leftIterator];
-            leftIterator--;
-            currentIterator++;
+            result[resultPointer] = numbers[leftPointer] * numbers[leftPointer];
+            leftPointer--;
+            resultPointer++;
         }
-        while (rightIterator < nums.Length)
+
+        while (rightPointer < numbers.Length)
         {
-            result[currentIterator] = nums[rightIterator] * nums[rightIterator];
-            rightIterator++;
-            currentIterator++;
+            result[resultPointer] = numbers[rightPointer] * numbers[rightPointer];
+            rightPointer++;
+            resultPointer++;
         }
 
         return result;

@@ -1,28 +1,37 @@
-﻿public class Solution 
+﻿public class Solution
 {
-    public bool IsValid(string s) 
+    public bool IsValid(string inputString)
     {
-        if (s.Length == 1)
-            return false;
-        var stack = new Stack<char>();
-        foreach (var elem in s)
+        if (inputString.Length % 2 != 0)
         {
-            if (elem == '(' || elem == '{' || elem == '[')
-                stack.Push(elem);
-            else
-            {
-                if (stack.Count == 0) 
-                    return false;
-                var value = stack.Pop();
-                if (elem == ')' && value != '(')
-                    return false;
-                if (elem == '}' && value != '{')
-                    return false;
-                if (elem == ']' && value != '[')
-                    return false;
-            }   
+            return false;
         }
-        
+
+        var stack = new Stack<char>();
+
+        foreach (var letter in inputString)
+        {
+            if (letter is '(' or '{' or '[')
+            {
+                stack.Push(letter);
+                continue;
+            }
+
+            if (stack.Count == 0)
+            {
+                return false;
+            }
+
+            var topValue = stack.Pop();
+
+            if (letter is ')' && topValue is not '(' ||
+                letter is '}' && topValue is not '{' ||
+                letter is ']' && topValue is not '[')
+            {
+                return false;
+            }
+        }
+
         return stack.Count == 0;
     }
 }
